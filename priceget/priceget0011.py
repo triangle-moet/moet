@@ -1,5 +1,8 @@
 from binance.client import Client
-from datetime import datetime
+import time
+import winsound
+s = winsound.PlaySound
+sleep = time.sleep
 client = Client("O8Nrx1vRU3fy1Y1ocToiSaswNYrrg02c2dftryO1Mz3ZzK2CGG7OCMqrkJVqBWvt", "QpHsCcxAeaLqL0mts464NxSxtqCU8cHcbeE0aUIIFI3YUsi6yPAtCOv2woCXWotI")
 br = "\n"
 eth = 1
@@ -22,21 +25,27 @@ def the_whole_program():
     btc = float(price) * float(eth)
     ada = float(btc) / float(price2)
     eth2 = float(ada) * float(price3)
-    print("--")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
+    print(Crypto1 + ": " + price)
+    print(Crypto2 + ": " + price2)
+    print(Crypto3 + ": " + price3)
+    print("___________")
     if eth2 > 1.003:
+        print("Trade")
+        print("\n")
         print("ETH: " + str(eth))
         print("ETH2: " + str(eth2))
-        print("Current Time =", current_time)
+        s('sound.wav', winsound.SND_FILENAME)
+        print("\nTausche ETH in BTC - BTC in ADA - ADA in ETH")
     elif eth2 < 0.997:
+        print("Trade")
+        print("\n")
         print("ETH: " + str(eth))
         print("ETH2: " + str(eth2))
-        print("Current Time =", current_time)
+        s('sound.wav', winsound.SND_FILENAME)
+        print("\nTausche ETH in ADA - ADA in BTC - BTC in ETH")
     else:
-        print("Npt")
-        print("Current Time =", current_time)
-    print("___" + br)
+        print("No profitable trading")
+    print("_____________________________________________" + br)
 
 
 while True:
