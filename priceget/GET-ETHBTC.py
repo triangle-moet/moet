@@ -1,13 +1,8 @@
 from binance.client import Client
-import json
 client = Client("O8Nrx1vRU3fy1Y1ocToiSaswNYrrg02c2dftryO1Mz3ZzK2CGG7OCMqrkJVqBWvt", "QpHsCcxAeaLqL0mts464NxSxtqCU8cHcbeE0aUIIFI3YUsi6yPAtCOv2woCXWotI")
-br = "\n\r"
 Crypto = "ETHBTC"
+
 def the_whole_program():
-    with open(Crypto + '.moet') as json_file:
-        data = json.load(json_file)
-        for p in data:
-            print(data)
+    print(client.get_symbol_ticker(symbol=Crypto)['price'])
 while True:
     the_whole_program()
-

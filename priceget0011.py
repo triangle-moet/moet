@@ -1,12 +1,11 @@
 from binance.client import Client
-from binance.enums import *
 client = Client("O8Nrx1vRU3fy1Y1ocToiSaswNYrrg02c2dftryO1Mz3ZzK2CGG7OCMqrkJVqBWvt", "QpHsCcxAeaLqL0mts464NxSxtqCU8cHcbeE0aUIIFI3YUsi6yPAtCOv2woCXWotI")
 br = "\n"
 tradevarbase = 1
 def the_whole_program():
     Crypto1 = "ETHBTC"
-    Crypto2 = "ADABTC"
-    Crypto3 = "ADAETH"
+    Crypto2 = "ADXBTC"
+    Crypto3 = "ADXETH"
     price = client.get_symbol_ticker(symbol=Crypto1)
     price = str(price)
     price = price.replace("'}", "")
@@ -23,24 +22,17 @@ def the_whole_program():
     var2 = float(var1) / float(price2)
     tradevarbase2 = float(var2) * float(price3)
     print("--")
-    if tradevarbase2 > 1.003:
-        print("ETH: " + str(tradevarbase))
-        print("ETH2: " + str(tradevarbase2))
-    elif tradevarbase2 < 0.997:
-        print("ETH: " + str(tradevarbase))
-        print("ETH2: " + str(tradevarbase2))
-
+    if tradevarbase2 > 1.0035:
+        mailoutput = "ETH-BTC-ADX " + str(float(float(tradevarbase2) - float(1.00225)) * 100) + " %"
+        print(price)
+        print(price2)
+        print(price3)
+        print(mailoutput)
+    elif tradevarbase2 < 0.9965:
+        mailoutput = "ETH-ADX-BTC " + str(float(float(0.99775) - float(tradevarbase2)) * 100) + " %"
+        print(mailoutput)
     else:
-        print("NPT")
-        order = client.create_test_order(
-            symbol=Crypto1,
-            side=SIDE_BUY,
-            type=ORDER_TYPE_MARKET,
-            timeInForce=TIME_IN_FORCE_GTC,
-            quantity=1,
-            price='0.00001')
+        print("Npt")
     print("___" + br)
-
-
 while True:
     the_whole_program()
